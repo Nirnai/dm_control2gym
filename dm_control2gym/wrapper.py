@@ -83,20 +83,20 @@ class DmControlWrapper(core.Env):
         self.render_mode_list = render_mode_list
 
         # set seed
-        self._seed()
+        self.seed()
 
     def getObservation(self):
         return convertObservation(self.timestep.observation)
 
-    def _seed(self, seed=None):
+    def seed(self, seed=None):
         self.np_random, seed = seeding.np_random(seed)
         return [seed]
 
-    def _reset(self):
+    def reset(self):
         self.timestep = self.dmcenv.reset()
         return self.getObservation()
 
-    def _step(self, a):
+    def step(self, a):
 
         if type(self.action_space) == DmcDiscrete:
             a += self.action_space.offset
@@ -105,7 +105,7 @@ class DmControlWrapper(core.Env):
         return self.getObservation(), self.timestep.reward, self.timestep.last(), {}
 
 
-    def _render(self, mode='human', close=False):
+    def render(self, mode='human', close=False):
 
         self.pixels = self.dmcenv.physics.render(**self.render_mode_list[mode]['render_kwargs'])
         if close:
