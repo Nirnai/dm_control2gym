@@ -20,9 +20,9 @@ def convertSpec2Space(spec, clip_inf=False):
         return DmcDiscrete(spec.minimum, spec.maximum)
     else:
         # Box
-        if type(spec) is specs.ArraySpec:
+        if type(spec) is specs.Array:
             return spaces.Box(-np.inf, np.inf, shape=spec.shape)
-        elif type(spec) is specs.BoundedArraySpec:
+        elif type(spec) is specs.BoundedArray:
             _min = spec.minimum
             _max = spec.maximum
             if clip_inf:
