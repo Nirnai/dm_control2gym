@@ -1,6 +1,6 @@
 from gym import core, spaces
 from dm_control import suite
-from dm_control.rl import specs
+from dm_control.rl.control import specs
 from gym.utils import seeding
 import gym
 from dm_control2gym.viewer import DmControlViewer
